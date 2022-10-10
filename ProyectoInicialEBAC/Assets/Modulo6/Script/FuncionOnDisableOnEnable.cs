@@ -33,8 +33,6 @@ public class FuncionOnDisableOnEnable : MonoBehaviour
         0, 6, 7, //Cara6
         0, 1, 6,
     };
-
-    public bool EnableOnDisable;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,15 +40,28 @@ public class FuncionOnDisableOnEnable : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-
         GameObject tempGameObject = Instantiate<GameObject>(PrefabCubocolores);
         Color c = new Color(Random.value, Random.value, Random.value);
         tempGameObject.GetComponent<MeshRenderer>().material.color = c;
         tempGameObject.transform.position = Random.insideUnitSphere;
-        PrefabCubocolores.SetActive(EnableOnDisable);
         List<GameObject> objetosParaEliminar = new List<GameObject>();
+    }
+
+    private void OnDisable()
+    {
+        GameObject tempGameObject = Instantiate<GameObject>(PrefabCubocolores);
+        Color c = new Color(Random.value, Random.value, Random.value);
+        tempGameObject.GetComponent<MeshRenderer>().material.color = c;
+        tempGameObject.transform.position = Random.insideUnitSphere;
+        List<GameObject> objetosParaEliminar = new List<GameObject>();
+    }
+
+
+
+    void Update()
+    {
         {
         }
     }
